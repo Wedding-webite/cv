@@ -1,0 +1,1213 @@
+<html lang="vi" class="h-full"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trần Hữu Hùng — Freelancer IT &amp; Marketing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<link id="all-fonts-link-font-geist" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-geist">.font-geist { font-family: 'Geist', sans-serif !important; }</style>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap');
+  
+  @property --gradient-angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+  }
+  
+  @property --gradient-angle-offset {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+  }
+  
+  @property --gradient-percent {
+    syntax: "<percentage>";
+    initial-value: 20%;
+    inherits: false;
+  }
+  
+  @property --gradient-shine {
+    syntax: "<color>";
+    initial-value: #8484ff;
+    inherits: false;
+  }
+  
+  .shiny-cta {
+    --gradient-angle: 0deg;
+    --gradient-angle-offset: 0deg;
+    --gradient-percent: 20%;
+    --gradient-shine: #8484ff;
+    --shadow-size: 2px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 9999px;
+    padding: 1.25rem 2.5rem;
+    font-size: 1.125rem;
+    line-height: 1.2;
+    font-weight: 500;
+    color: #ffffff;
+    background: linear-gradient(#000000, #000000) padding-box, 
+                conic-gradient(
+                  from calc(var(--gradient-angle) - var(--gradient-angle-offset)),
+                  transparent 0%,
+                  #1d4ed8 5%,
+                  var(--gradient-shine) 15%,
+                  #1d4ed8 30%,
+                  transparent 40%,
+                  transparent 100%
+                ) border-box;
+    border: 2px solid transparent;
+    box-shadow: inset 0 0 0 1px #1a1818;
+    outline: none;
+    transition: --gradient-angle-offset 800ms cubic-bezier(0.25, 1, 0.5, 1),
+                --gradient-percent 800ms cubic-bezier(0.25, 1, 0.5, 1),
+                --gradient-shine 800ms cubic-bezier(0.25, 1, 0.5, 1),
+                box-shadow 0.3s;
+    cursor: pointer;
+    isolation: isolate;
+    outline-offset: 4px;
+    font-family: 'Inter', 'Helvetica Neue', sans-serif;
+    z-index: 0;
+    animation: border-spin 2.5s linear infinite;
+    /* Ensure content stays in one line */
+    white-space: nowrap;
+  }
+  
+  @keyframes border-spin {
+    to {
+      --gradient-angle: 360deg;
+    }
+  }
+  
+  .shiny-cta:active {
+    transform: translateY(1px);
+  }
+  
+  .shiny-cta::before {
+    content: '';
+    pointer-events: none;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+    --size: calc(100% - 6px);
+    --position: 2px;
+    --space: 4px;
+    width: var(--size);
+    height: var(--size);
+    background: radial-gradient(circle at var(--position) var(--position), white 0.5px, transparent 0) padding-box;
+    background-size: var(--space) var(--space);
+    background-repeat: space;
+    mask-image: conic-gradient(
+      from calc(var(--gradient-angle) + 45deg),
+      black,
+      transparent 10% 90%,
+      black
+    );
+    border-radius: inherit;
+    opacity: 0.4;
+    pointer-events: none;
+  }
+  
+  .shiny-cta::after {
+    content: '';
+    pointer-events: none;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    width: 100%;
+    aspect-ratio: 1;
+    background: linear-gradient(-50deg, transparent, #1d4ed8, transparent);
+    mask-image: radial-gradient(circle at bottom, transparent 40%, black);
+    opacity: 0.6;
+    animation: shimmer 4s linear infinite;
+    animation-play-state: running;
+  }
+  
+  .shiny-cta span {
+    position: relative;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    /* Prevent wrapping */
+    white-space: nowrap;
+  }
+  
+  .shiny-cta span::before {
+    content: '';
+    pointer-events: none;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    --size: calc(100% + 1rem);
+    width: var(--size);
+    height: var(--size);
+    box-shadow: inset 0 -1ex 2rem 4px #1d4ed8;
+    opacity: 0;
+    border-radius: inherit;
+    transition: opacity 800ms cubic-bezier(0.25, 1, 0.5, 1);
+    animation: breathe 4.5s linear infinite;
+  }
+  
+  @keyframes shimmer {
+    to {
+      transform: translate(-50%, -50%) rotate(360deg);
+    }
+  }
+  
+  @keyframes breathe {
+    0%, 100% {
+      transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+      transform: translate(-50%, -50%) scale(1.20);
+    }
+  }
+  
+  /* Adjustments for smaller buttons */
+  .shiny-cta.small {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+  }
+  
+  .shiny-cta.medium {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+  }
+  
+  /* Responsive adjustments for contact buttons */
+  .shiny-cta.contact-button {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.875rem;
+  }
+  
+  /* Ensure SVG icons don't cause wrapping */
+  .shiny-cta svg {
+    flex-shrink: 0;
+  }
+  
+  /* Mobile responsive adjustments */
+  @media (max-width: 640px) {
+    .shiny-cta.contact-button {
+      padding: 0.5rem 1rem;
+      font-size: 0.8rem;
+    }
+    
+    .shiny-cta.contact-button svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+</style>
+</head>
+<body class="h-full bg-[#0b0b0c] text-neutral-200 antialiased" style="font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial">
+  
+  <!-- Unicorn Studio Background -->
+  <div data-us-project="rOckgwd0fvktpb8agzJw" class="fixed w-full h-full left-0 top-0 -z-10" style="position: fixed;"></div>
+  <script type="text/javascript">
+    !function(){if(!window.UnicornStudio){window.UnicornStudio={isInitialized:!1};var i=document.createElement("script");i.src="https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v1.4.31/dist/unicornStudio.umd.js",i.onload=function(){window.UnicornStudio.isInitialized||(UnicornStudio.init(),window.UnicornStudio.isInitialized=!0)},(document.head || document.body).appendChild(i)}}();
+  </script>
+
+  <!-- Background overlay for readability -->
+  <div class="fixed inset-0 -z-10 bg-black/40 backdrop-blur-[1px]"></div>
+
+  <!-- Navigation Header -->
+  <nav class="relative border-b border-white/10 bg-black/20 backdrop-blur-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <!-- Logo -->
+        <div class="flex items-center">
+          <a href="#" class="text-lg font-semibold tracking-tight text-white font-geist">THH.</a>
+        </div>
+        
+        <!-- Navigation Links -->
+        <div class="hidden md:flex items-center space-x-8">
+          <a href="#about" class="text-sm text-neutral-300 hover:text-white transition font-geist">Giới thiệu</a>
+          <a href="#experience" class="text-sm text-neutral-300 hover:text-white transition font-geist">Kinh nghiệm</a>
+          <a href="#skills" class="text-sm text-neutral-300 hover:text-white transition font-geist">Kỹ năng</a>
+          <a href="#contact" class="text-sm text-neutral-300 hover:text-white transition font-geist">Liên hệ</a>
+        </div>
+
+        <!-- CTA Button -->
+        <div class="flex items-center">
+          <button class="shiny-cta small">
+            <span class="font-geist">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="download" class="lucide lucide-download h-4 w-4 inline-flex"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" x2="12" y1="15" y2="3"></line></svg>
+              <span class="inline-flex">Tải CV</span>
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 md:pt-16" id="about">
+    <div class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 shadow-sm backdrop-blur">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="code-2" class="lucide lucide-code-2 h-4 w-4 text-emerald-400"><path d="m18 16 4-4-4-4"></path><path d="m6 8-4 4 4 4"></path><path d="m14.5 4-5 16"></path></svg>
+      <span class="text-[13px] leading-none text-neutral-300 font-geist">IT &amp; Marketing Portfolio</span>
+    </div>
+
+    <h1 class="mt-6 text-4xl sm:text-5xl lg:text-6xl text-neutral-100 font-geist tracking-tighter">
+      Trần Hữu Hùng, <span class="text-neutral-400 font-geist tracking-tighter">Freelancer</span>
+    </h1>
+    <p class="mt-3 text-base sm:text-lg text-neutral-400 max-w-3xl font-geist">
+      Kết hợp tư duy công nghệ và chiến lược Marketing để tối ưu hóa hiệu quả kinh doanh. Chuyên về Digital Ads, Thiết kế UI/UX và Phát triển Web.
+    </p>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 md:mt-12">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8">
+      
+      <!-- Left Sidebar: Profile Card (Sticky) -->
+      <section class="lg:col-span-4 lg:sticky lg:top-24 h-fit">
+        <div class="relative shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)] overflow-hidden border-white/10 border rounded-3xl backdrop-blur-lg bg-black/20">
+          <div class="p-3 sm:p-4">
+            <!-- Profile Image -->
+            <div class="relative rounded-2xl overflow-hidden bg-neutral-900 ring-1 ring-white/10 group">
+              <div class="h-64 sm:h-80 w-full flex items-center justify-center overflow-hidden">
+                 <img src="img/avttt.png" alt="Trần Hữu Hùng" class="object-cover w-full h-full">
+              </div>
+              <div class="absolute bottom-3 left-3 flex items-center gap-2 rounded-full bg-black/60 px-2.5 py-1.5 ring-1 ring-white/10 backdrop-blur">
+                <span class="h-2.5 w-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span class="text-[12px] text-neutral-200 font-geist">Sẵn sàng làm việc</span>
+              </div>
+            </div>
+
+            <div class="px-2 sm:px-1 pt-2">
+              <h2 class="mt-4 text-2xl text-neutral-100 font-geist tracking-tighter">
+                Trần Hữu Hùng
+              </h2>
+              <p class="mt-1 text-sm text-emerald-400 font-medium font-geist">
+                Freelancer IT kết hợp Marketing
+              </p>
+
+              <!-- Personal Info Grid -->
+              <div class="mt-6 space-y-3">
+                 <div class="flex items-start gap-3 text-sm text-neutral-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 text-neutral-500"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"></rect><line x1="16" x2="16" y1="2" y2="6"></line><line x1="8" x2="8" y1="2" y2="6"></line><line x1="3" x2="21" y1="10" y2="10"></line></svg>
+                    <span>20/04/2000</span>
+                 </div>
+                 <div class="flex items-start gap-3 text-sm text-neutral-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 text-neutral-500"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                    <span>Bạch Hà, Nghệ An</span>
+                 </div>
+                 <a href="tel:0982345830" class="flex items-start gap-3 text-sm text-neutral-400 hover:text-white transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 text-neutral-500"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                    <span>0982.345.830</span>
+                 </a>
+                 <a href="mailto:hunganhlux@gmail.com" class="flex items-start gap-3 text-sm text-neutral-400 hover:text-white transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 text-neutral-500"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"></path></svg>
+                    <span>hunganhlux@gmail.com</span>
+                 </a>
+              </div>
+
+              <div class="my-5 h-px bg-gradient-to-r from-white/10 via-white/5 to-transparent"></div>
+
+              <div class="mb-2">
+                <button class="shiny-cta medium w-full">
+                  <span class="font-geist">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="send" class="lucide lucide-send h-4 w-4 inline-flex"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path><path d="m21.854 2.147-10.94 10.939"></path></svg>
+                    <span class="inline-flex">Liên hệ ngay</span>
+                  </span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Right: Main Content -->
+      <div class="lg:col-span-8 space-y-6">
+        
+        <!-- About / Goals Section -->
+        <section class="relative shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)] border-white/10 border rounded-3xl p-6 backdrop-blur-lg bg-black/20">
+          <h3 class="text-xl font-semibold text-white mb-4 font-geist tracking-tight flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-emerald-400"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path><path d="m21.854 2.147-10.94 10.939"></path></svg>
+            Mục tiêu nghề nghiệp
+          </h3>
+          
+          <div class="grid sm:grid-cols-2 gap-6">
+            <!-- Short term -->
+            <div class="rounded-2xl border border-white/5 bg-white/[0.02] p-4">
+               <div class="flex items-center gap-2 mb-3">
+                  <div class="h-1.5 w-1.5 rounded-full bg-cyan-400"></div>
+                  <h4 class="text-sm font-medium text-neutral-200 font-geist">Mục tiêu ngắn hạn</h4>
+               </div>
+               <ul class="space-y-2 text-sm text-neutral-400 list-disc list-inside marker:text-cyan-400/50">
+                  <li>Ứng tuyển vị trí Digital/Performance Marketing.</li>
+                  <li>Áp dụng kỹ năng thiết kế vào chạy quảng cáo.</li>
+                  <li>Nâng cao tối ưu quảng cáo và Landing Page.</li>
+                  <li>Hòa nhập nhanh và đóng góp hiệu quả chiến dịch.</li>
+               </ul>
+            </div>
+
+            <!-- Long term -->
+            <div class="rounded-2xl border border-white/5 bg-white/[0.02] p-4">
+               <div class="flex items-center gap-2 mb-3">
+                  <div class="h-1.5 w-1.5 rounded-full bg-fuchsia-400"></div>
+                  <h4 class="text-sm font-medium text-neutral-200 font-geist">Mục tiêu dài hạn</h4>
+               </div>
+               <ul class="space-y-2 text-sm text-neutral-400 list-disc list-inside marker:text-fuchsia-400/50">
+                  <li>Trở thành Digital Marketer đa kỹ năng (Full-stack).</li>
+                  <li>Phát triển chuyên sâu Creative &amp; Performance.</li>
+                  <li>Vị trí Lead/Quản lý nhóm Marketing (2-3 năm).</li>
+               </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Education Section -->
+        <section class="relative shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)] border-white/10 border rounded-3xl p-6 backdrop-blur-lg bg-black/20">
+          <h3 class="text-xl font-semibold text-white mb-6 font-geist tracking-tight flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-amber-400"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"></path></svg>
+            Học vấn
+          </h3>
+
+          <div class="group rounded-2xl border border-white/10 bg-black/20 px-5 py-5 transition hover:border-white/20">
+            <div class="flex flex-col sm:flex-row justify-between sm:items-start gap-4 mb-4">
+               <div>
+                  <h4 class="text-lg font-medium text-white font-geist">Đại học FPT</h4>
+                  <p class="text-emerald-400 text-sm font-medium">Ngành Công nghệ Thông tin</p>
+                  <p class="text-neutral-500 text-xs mt-1">MSSV: HE140208</p>
+               </div>
+               <span class="inline-flex items-center rounded-md bg-white/5 px-2 py-1 text-xs font-medium text-neutral-300 ring-1 ring-inset ring-white/10">2018 – 2022</span>
+            </div>
+            
+            <p class="text-sm text-neutral-300 font-geist mb-3">
+              Chương trình đào tạo 4 năm: 5 kỳ chuyên ngành + 1 kỳ OJT.
+            </p>
+            
+            <div class="flex flex-wrap gap-2">
+               <span class="text-[11px] border border-white/10 bg-white/5 px-2 py-1 rounded text-neutral-400">Programming Fundamentals</span>
+               <span class="text-[11px] border border-white/10 bg-white/5 px-2 py-1 rounded text-neutral-400">Database Systems</span>
+               <span class="text-[11px] border border-white/10 bg-white/5 px-2 py-1 rounded text-neutral-400">Mobile Dev</span>
+               <span class="text-[11px] border border-white/10 bg-white/5 px-2 py-1 rounded text-neutral-400">Web Application</span>
+               <span class="text-[11px] border border-white/10 bg-white/5 px-2 py-1 rounded text-neutral-400">Software Engineering</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="relative shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)] border-white/10 border rounded-3xl p-6 backdrop-blur-lg bg-black/20">
+          <h3 class="text-xl font-semibold text-white mb-6 font-geist tracking-tight flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-400"><path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path><rect width="20" height="14" x="2" y="6" rx="2"></rect></svg>
+            Kinh nghiệm làm việc
+          </h3>
+
+          <div class="relative pl-6 border-l border-white/10 space-y-8">
+            <!-- Job 1 -->
+            <div class="relative group">
+              <div class="absolute -left-[29px] mt-1.5 h-3 w-3 rounded-full border border-black bg-blue-500 ring-4 ring-black"></div>
+              
+              <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-2">
+                 <h4 class="text-lg font-medium text-neutral-100 font-geist">Chuyên viên Marketing (B2C – Quốc tế)</h4>
+                 <span class="text-xs text-neutral-400 font-mono">2022 – 2024</span>
+              </div>
+              <p class="text-sm text-blue-400 mb-3">Công ty CP Thương Mại &amp; XNK Đức Tín</p>
+              
+              <div class="text-sm text-neutral-400 space-y-3 font-geist">
+                <p>Nghiên cứu thị trường quốc tế, phân tích hành vi khách hàng (Mỹ, Nhật, EU) và lên chiến lược Marketing cho sản phẩm cao cấp.</p>
+                <ul class="list-disc list-outside ml-4 space-y-1 text-neutral-400">
+                  <li>Quản lý hệ thống quảng cáo <span class="text-neutral-200">Facebook Ads, YouTube, Amazon PPC</span>.</li>
+                  <li>Dựng video ads và tối ưu nội dung cho từng phân khúc.</li>
+                  <li>Xây dựng hệ thống Landing Page bán hàng chuẩn SEO &amp; High Performance.</li>
+                </ul>
+                <div class="mt-3 p-3 rounded-xl bg-blue-500/10 border border-blue-500/20">
+                   <p class="text-xs font-semibold text-blue-200 mb-1">Thành tựu:</p>
+                   <p class="text-xs text-blue-100/70">• Tăng trưởng doanh thu B2C quốc tế 25–40%/năm.</p>
+                   <p class="text-xs text-blue-100/70">• Tăng tỷ lệ chuyển đổi Landing Page 20–35% (UI/UX &amp; Performance).</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="relative shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)] border-white/10 border rounded-3xl p-6 backdrop-blur-lg bg-black/20">
+          <h3 class="text-xl font-semibold text-white mb-6 font-geist tracking-tight flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-fuchsia-400"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            Kỹ năng chuyên môn
+          </h3>
+
+          <div class="grid sm:grid-cols-2 gap-8">
+            <!-- Design Skills -->
+            <div>
+               <h4 class="text-sm font-semibold text-neutral-300 mb-4 font-geist uppercase tracking-wider">Thiết kế &amp; Đồ họa</h4>
+               <div class="space-y-4">
+                  <!-- Skill Item -->
+                  <div>
+                     <div class="flex justify-between text-xs mb-1.5 font-medium">
+                        <span class="text-neutral-200">Photoshop (Digital Illustration)</span>
+                        <span class="text-emerald-400">90%</span>
+                     </div>
+                     <div class="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
+                        <div class="h-full bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 rounded-full" style="width: 90%"></div>
+                     </div>
+                  </div>
+                  <!-- Skill Item -->
+                  <div>
+                     <div class="flex justify-between text-xs mb-1.5 font-medium">
+                        <span class="text-neutral-200">CapCut / PC Mobile</span>
+                        <span class="text-emerald-400">95%</span>
+                     </div>
+                     <div class="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
+                        <div class="h-full bg-gradient-to-r from-emerald-600 via-cyan-600 to-blue-600 rounded-full" style="width: 95%"></div>
+                     </div>
+                  </div>
+                  <!-- Skill Item -->
+                  <div>
+                     <div class="flex justify-between text-xs mb-1.5 font-medium">
+                        <span class="text-neutral-200">Premiere / After Effects</span>
+                        <span class="text-emerald-400">85%</span>
+                     </div>
+                     <div class="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
+                        <div class="h-full bg-gradient-to-r from-pink-600 via-purple-600 to-indigo-600 rounded-full" style="width: 85%"></div>
+                     </div>
+                  </div>
+                  <!-- Skill Item -->
+                  <div>
+                     <div class="flex justify-between text-xs mb-1.5 font-medium">
+                        <span class="text-neutral-200">Figma / UIUX</span>
+                        <span class="text-emerald-400">80%</span>
+                     </div>
+                     <div class="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
+                        <div class="h-full bg-gradient-to-r from-yellow-600 via-red-600 to-pink-600 rounded-full" style="width: 80%"></div>
+                     </div>
+                  </div>
+                  <!-- Skill Item -->
+                  <div>
+                     <div class="flex justify-between text-xs mb-1.5 font-medium">
+                        <span class="text-neutral-200">Thiết kế Banner / Poster</span>
+                        <span class="text-emerald-400">80%</span>
+                     </div>
+                     <div class="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
+                        <div class="h-full bg-gradient-to-r from-green-600 via-blue-600 to-purple-700 rounded-full" style="width: 80%"></div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+            <!-- Marketing & Tech Skills -->
+            <div>
+               <h4 class="text-sm font-semibold text-neutral-300 mb-4 font-geist uppercase tracking-wider">Marketing &amp; Công nghệ</h4>
+               <div class="space-y-4">
+                  <!-- Skill Item -->
+                  <div>
+                     <div class="flex justify-between text-xs mb-1.5 font-medium">
+                        <span class="text-neutral-200">Facebook Ads / YouTube Ads</span>
+                        <span class="text-cyan-400">90%</span>
+                     </div>
+                     <div class="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
+                        <div class="h-full bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 rounded-full" style="width: 90%"></div>
+                     </div>
+                  </div>
+                  <!-- Skill Item -->
+                  <div>
+                     <div class="flex justify-between text-xs mb-1.5 font-medium">
+                        <span class="text-neutral-200">Landing Page (Webflow/Framer)</span>
+                        <span class="text-cyan-400">85%</span>
+                     </div>
+                     <div class="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
+                        <div class="h-full bg-gradient-to-r from-cyan-600 via-teal-600 to-green-600 rounded-full" style="width: 85%"></div>
+                     </div>
+                  </div>
+                  <!-- Skill Item -->
+                  <div>
+                     <div class="flex justify-between text-xs mb-1.5 font-medium">
+                        <span class="text-neutral-200">VS Code / HTML / CSS</span>
+                        <span class="text-cyan-400">75%</span>
+                     </div>
+                     <div class="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
+                        <div class="h-full bg-gradient-to-r from-orange-600 via-red-600 to-pink-600 rounded-full" style="width: 75%"></div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </div>
+
+
+
+    <!-- Client Highlights -->
+    <section class="mt-12 mb-20">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8">
+        <div class="lg:col-span-12">
+          <div class="border-white/10 border rounded-2xl pt-12 pr-8 pb-12 pl-8 backdrop-blur-lg bg-gradient-to-r from-white/[0.03] to-transparent text-center">
+            <h3 class="text-2xl font-semibold tracking-tight text-white font-geist">Dự án tiêu biểu</h3>
+            <div class="relative flex items-center justify-center py-12 sm:py-20 hidden md:flex" style="min-height: 450px;" id="desktop-projects">
+              <div class="container max-w-full" style="position: relative; display: flex; justify-content: center; align-items: center; height: 100%; transition: all 0.5s ease;" id="projects-container">
+                <!-- Project 1 -->
+                <div class="glass project-card" style="position: relative; width: 340px; height: 340px; background: linear-gradient(rgba(255, 255, 255, 0.1), transparent); border: 1px solid rgba(0, 0, 0, 0.05); box-shadow: rgba(0, 0, 0, 0.1) 0px 25px 25px; display: flex; justify-content: center; align-items: center; border-radius: 1rem; margin: 0px -50px; backdrop-filter: blur(10px); transform: rotate(-10deg); transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);">
+                  <div class="absolute inset-4 rounded-xl bg-black/20 text-white shadow-2xl ring-1 ring-white/10 overflow-hidden backdrop-blur-lg">
+                    <div class="p-6">
+                      <h4 class="text-lg font-semibold text-white mb-3 font-geist">Dự án 1 – Landing Page bán dầu gội B2C nước ngoài</h4>
+                      <ul class="space-y-2 text-sm text-neutral-300 list-disc list-inside marker:text-cyan-400/50 font-geist">
+                        <li><span class="text-neutral-200">Vai trò:</span> Tạo landing page, tối ưu UX/UI, gắn GA4 + Pixel</li>
+                        <li><span class="text-neutral-200">Kết quả:</span> Tăng 25% tỉ lệ chuyển đổi trong 2 tháng</li>
+                      </ul>
+                      <div class="mt-4 text-xs text-neutral-400 italic font-geist">(Nhìn vào là thấy mày có thực chiến.)</div>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="glass project-card" style="position: relative; width: 340px; height: 340px; background: linear-gradient(rgba(255, 255, 255, 0.08), transparent); border: 1px solid rgba(0, 0, 0, 0.05); box-shadow: rgba(0, 0, 0, 0.1) 0px 25px 25px; display: flex; justify-content: center; align-items: center; border-radius: 1rem; margin: 0px -50px; backdrop-filter: blur(10px); transform: rotate(-6deg); transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);">
+                  <div class="absolute inset-4 rounded-xl bg-black/20 text-white shadow-xl ring-1 ring-white/10 backdrop-blur overflow-hidden">
+                    <div class="p-6">
+                      <h4 class="text-lg font-semibold text-white mb-3 font-geist">Dự án 2 – Website giới thiệu sản phẩm (FPT Software – nội bộ)</h4>
+                      <ul class="space-y-2 text-sm text-neutral-300 list-disc list-inside marker:text-cyan-400/50 font-geist">
+                        <li><span class="text-neutral-200">Vai trò:</span> Hỗ trợ code, tối ưu SEO technical, thiết lập tracking</li>
+                        <li><span class="text-neutral-200">Kết quả:</span> Tốc độ website tăng 40%, SEO onpage đạt chuẩn</li>
+                      </ul>
+                      <div class="mt-4 text-xs text-neutral-400 italic font-geist">(Nhìn vào là thấy mày có thực chiến.)</div>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="glass project-card" style="position: relative; width: 340px; height: 340px; background: linear-gradient(rgba(255, 255, 255, 0.06), transparent); border: 1px solid rgba(0, 0, 0, 0.05); box-shadow: rgba(0, 0, 0, 0.1) 0px 25px 25px; display: flex; justify-content: center; align-items: center; border-radius: 1rem; margin: 0px -50px; backdrop-filter: blur(10px); transform: rotate(0deg); transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);">
+                  <div class="absolute inset-4 rounded-xl bg-black/20 text-white shadow-lg ring-1 ring-white/10 backdrop-blur overflow-hidden">
+                    <div class="p-6">
+                      <h4 class="text-lg font-semibold text-white mb-3 font-geist">Dự án 3 – Chiến dịch Quảng cáo Facebook Ads</h4>
+                      <ul class="space-y-2 text-sm text-neutral-300 list-disc list-inside marker:text-cyan-400/50 font-geist">
+                        <li><span class="text-neutral-200">Ngân sách:</span> 20–50 triệu (hợp lý)</li>
+                        <li><span class="text-neutral-200">Kết quả:</span> Tối ưu CPA, tăng số lượng khách hàng tiềm năng 30%</li>
+                      </ul>
+                      <div class="mt-4 text-xs text-neutral-400 italic font-geist">(Nhìn vào là thấy mày có thực chiến.)</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Mobile Version - Stacked Vertically -->
+            <div class="grid grid-cols-1 gap-6 mt-8 md:hidden">
+              <!-- Project 1 -->
+              <div class="relative shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)] overflow-hidden border-white/10 border rounded-3xl backdrop-blur-lg bg-black/20 p-6 text-left">
+                <h4 class="text-lg font-semibold text-white mb-3 font-geist">Dự án 1 – Landing Page bán dầu gội B2C nước ngoài</h4>
+                <ul class="space-y-2 text-sm text-neutral-300 list-disc list-inside marker:text-cyan-400/50 font-geist">
+                  <li><span class="text-neutral-200">Vai trò:</span> Tạo landing page, tối ưu UX/UI, gắn GA4 + Pixel</li>
+                  <li><span class="text-neutral-200">Kết quả:</span> Tăng 25% tỉ lệ chuyển đổi trong 2 tháng</li>
+                </ul>
+                <div class="mt-4 text-xs text-neutral-400 italic font-geist">(Nhìn vào là thấy mày có thực chiến.)</div>
+              </div>
+              
+              <!-- Project 2 -->
+              <div class="relative shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)] overflow-hidden border-white/10 border rounded-3xl backdrop-blur-lg bg-black/20 p-6 text-left">
+                <h4 class="text-lg font-semibold text-white mb-3 font-geist">Dự án 2 – Website giới thiệu sản phẩm (FPT Software – nội bộ)</h4>
+                <ul class="space-y-2 text-sm text-neutral-300 list-disc list-inside marker:text-cyan-400/50 font-geist">
+                  <li><span class="text-neutral-200">Vai trò:</span> Hỗ trợ code, tối ưu SEO technical, thiết lập tracking</li>
+                  <li><span class="text-neutral-200">Kết quả:</span> Tốc độ website tăng 40%, SEO onpage đạt chuẩn</li>
+                </ul>
+                <div class="mt-4 text-xs text-neutral-400 italic font-geist">(Nhìn vào là thấy mày có thực chiến.)</div>
+              </div>
+              
+              <!-- Project 3 -->
+              <div class="relative shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)] overflow-hidden border-white/10 border rounded-3xl backdrop-blur-lg bg-black/20 p-6 text-left">
+                <h4 class="text-lg font-semibold text-white mb-3 font-geist">Dự án 3 – Chiến dịch Quảng cáo Facebook Ads</h4>
+                <ul class="space-y-2 text-sm text-neutral-300 list-disc list-inside marker:text-cyan-400/50 font-geist">
+                  <li><span class="text-neutral-200">Ngân sách:</span> 20–50 triệu (hợp lý)</li>
+                  <li><span class="text-neutral-200">Kết quả:</span> Tối ưu CPA, tăng số lượng khách hàng tiềm năng 30%</li>
+                </ul>
+                <div class="mt-4 text-xs text-neutral-400 italic font-geist">(Nhìn vào là thấy mày có thực chiến.)</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const container = document.getElementById('projects-container');
+        const cards = document.querySelectorAll('.project-card');
+        
+        container.addEventListener('mouseenter', function() {
+          // Reset rotations and align cards horizontally with spacing
+          cards[0].style.transform = 'rotate(0deg) translateX(-120px)';
+          cards[1].style.transform = 'rotate(0deg) translateX(0px)';
+          cards[2].style.transform = 'rotate(0deg) translateX(120px)';
+          
+          // Add neon glow effect
+          cards[0].style.boxShadow = 'rgba(140, 255, 50, 0.5) 0px 0px 20px, rgba(0, 0, 0, 0.1) 0px 25px 25px';
+          cards[1].style.boxShadow = 'rgba(140, 255, 50, 0.7) 0px 0px 30px, rgba(0, 0, 0, 0.1) 0px 25px 25px';
+          cards[2].style.boxShadow = 'rgba(140, 255, 50, 0.5) 0px 0px 20px, rgba(0, 0, 0, 0.1) 0px 25px 25px';
+          
+          // Restore original backgrounds
+          cards[0].style.background = 'linear-gradient(rgba(255, 255, 255, 0.1), transparent)';
+          cards[1].style.background = 'linear-gradient(rgba(255, 255, 255, 0.08), transparent)';
+          cards[2].style.background = 'linear-gradient(rgba(255, 255, 255, 0.06), transparent)';
+          
+          // Increase z-index for visibility
+          cards[0].style.zIndex = '10';
+          cards[1].style.zIndex = '11';
+          cards[2].style.zIndex = '10';
+        });
+        
+        container.addEventListener('mouseleave', function() {
+          // Return to original positions and rotations
+          cards[0].style.transform = 'rotate(-10deg)';
+          cards[1].style.transform = 'rotate(-6deg)';
+          cards[2].style.transform = 'rotate(0deg)';
+          
+          // Remove neon glow effect
+          cards[0].style.boxShadow = 'rgba(0, 0, 0, 0.1) 0px 25px 25px';
+          cards[1].style.boxShadow = 'rgba(0, 0, 0, 0.1) 0px 25px 25px';
+          cards[2].style.boxShadow = 'rgba(0, 0, 0, 0.1) 0px 25px 25px';
+          
+          // Restore original backgrounds
+          cards[0].style.background = 'linear-gradient(rgba(255, 255, 255, 0.1), transparent)';
+          cards[1].style.background = 'linear-gradient(rgba(255, 255, 255, 0.08), transparent)';
+          cards[2].style.background = 'linear-gradient(rgba(255, 255, 255, 0.06), transparent)';
+          
+          // Reset z-index
+          cards[0].style.zIndex = '';
+          cards[1].style.zIndex = '';
+          cards[2].style.zIndex = '';
+        });
+      });
+    </script>
+
+
+  <!-- Soft Skills Section -->
+  <section class="mt-12 mb-20 relative">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8">
+      <div class="lg:col-span-12">
+        <div class="border-white/10 border rounded-2xl pt-12 pr-8 pb-12 pl-8 backdrop-blur-lg bg-gradient-to-r from-white/[0.03] to-transparent text-center relative overflow-hidden">
+          <h3 class="text-2xl font-semibold tracking-tight text-white font-geist mb-4">Kỹ năng mềm (Soft Skills)</h3>
+          <p class="text-base text-neutral-400 mt-2 font-geist mx-auto max-w-2xl mb-12">Những kỹ năng hỗ trợ tôi làm việc hiệu quả trong môi trường chuyên nghiệp và đa lĩnh vực.</p>
+          
+          <!-- Skill Icons Row -->
+          <div class="flex justify-center flex-wrap gap-8 mb-20 mt-12 relative z-10" id="skill-icons-container">
+            <!-- Skill 1 -->
+            <div class="flex flex-col items-center skill-icon" data-skill="1">
+              <span class="text-xs text-neutral-300 font-geist text-center mb-2 max-w-[100px]">Giao tiếp & phối hợp nhóm</span>
+              <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500/20 to-cyan-700/30 border border-cyan-500/30 flex items-center justify-center backdrop-blur-sm shadow-lg shadow-cyan-500/10 p-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-cyan-400 w-5 h-5">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+              </div>
+            </div>            
+            <!-- Skill 2 -->
+            <div class="flex flex-col items-center skill-icon" data-skill="2">
+              <span class="text-xs text-neutral-300 font-geist text-center mb-2 max-w-[100px]">Giải quyết vấn đề</span>
+              <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500/20 to-cyan-700/30 border border-cyan-500/30 flex items-center justify-center backdrop-blur-sm shadow-lg shadow-cyan-500/10 p-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-cyan-400 w-5 h-5">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="M12 16v-4"></path>
+                  <path d="M12 8h.01"></path>
+                </svg>
+              </div>
+            </div>            
+            <!-- Skill 3 -->
+            <div class="flex flex-col items-center skill-icon" data-skill="3">
+              <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-cyan-500/20 to-cyan-700/30 border border-cyan-500/30 flex items-center justify-center mb-3 backdrop-blur-sm shadow-lg shadow-cyan-500/10">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-cyan-400 w-6 h-6">
+                  <path d="M3 3v18h18"></path>
+                  <path d="m19 9-5 5-4-4-3 3"></path>
+                </svg>
+              </div>
+              <span class="text-sm text-neutral-300 font-geist text-center max-w-[120px]">Tư duy phân tích dữ liệu</span>
+            </div>
+            
+            <!-- Skill 4 -->
+            <div class="flex flex-col items-center skill-icon" data-skill="4">
+              <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-cyan-500/20 to-cyan-700/30 border border-cyan-500/30 flex items-center justify-center mb-3 backdrop-blur-sm shadow-lg shadow-cyan-500/10">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-cyan-400 w-6 h-6">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+              </div>
+              <span class="text-sm text-neutral-300 font-geist text-center max-w-[120px]">Quản lý thời gian</span>
+            </div>
+            
+            <!-- Skill 5 -->
+            <div class="flex flex-col items-center skill-icon" data-skill="5">
+              <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-cyan-500/20 to-cyan-700/30 border border-cyan-500/30 flex items-center justify-center mb-3 backdrop-blur-sm shadow-lg shadow-cyan-500/10">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-cyan-400 w-6 h-6">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                  <line x1="16" y1="2" x2="16" y2="6"></line>
+                  <line x1="8" y1="2" x2="8" y2="6"></line>
+                  <line x1="3" y1="10" x2="21" y2="10"></line>
+                  <path d="M17 16h-5M12 16v-4M12 16l3 3"></path>
+                </svg>
+              </div>
+              <span class="text-sm text-neutral-300 font-geist text-center max-w-[120px]">Làm việc theo Agile/Scrum</span>
+            </div>
+            
+            <!-- Skill 6 -->
+            <div class="flex flex-col items-center skill-icon" data-skill="6">
+              <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-cyan-500/20 to-cyan-700/30 border border-cyan-500/30 flex items-center justify-center mb-3 backdrop-blur-sm shadow-lg shadow-cyan-500/10">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-cyan-400 w-6 h-6">
+                  <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"></path>
+                  <path d="M8 12h6"></path>
+                  <path d="M8 8h8"></path>
+                  <path d="M8 16h4"></path>
+                </svg>
+              </div>
+              <span class="text-sm text-neutral-300 font-geist text-center max-w-[120px]">Tự học & nghiên cứu công nghệ mới</span>
+            </div>
+          </div>
+          
+          <!-- Central Icon -->
+          <div class="flex justify-center mt-16 relative z-10">
+            <div class="w-20 h-20 rounded-3xl bg-gradient-to-br from-cyan-500/30 to-cyan-700/40 border-2 border-cyan-500/50 flex items-center justify-center backdrop-blur-lg shadow-2xl shadow-cyan-500/20 relative" id="central-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-cyan-400 w-10 h-10 animate-pulse">
+                <path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z"></path>
+                <path d="M8 12h.01"></path>
+                <path d="M12 12h.01"></path>
+                <path d="M16 12h.01"></path>
+                <path d="M8 16h.01"></path>
+                <path d="M12 16h.01"></path>
+                <path d="M16 16h.01"></path>
+                <path d="M8 8h.01"></path>
+                <path d="M12 8h.01"></path>
+                <path d="M16 8h.01"></path>
+              </svg>
+            </div>
+          </div>
+          
+          <!-- Neon Connection Lines -->
+          <canvas id="neon-lines" class="absolute inset-0 w-full h-full pointer-events-none"></canvas>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <style>
+    .skill-icon {
+      transition: transform 0.3s ease, filter 0.3s ease;
+    }
+    
+    .skill-icon:hover {
+      transform: translateY(-5px);
+      filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.5));
+    }
+    
+    #central-icon {
+      animation: pulseGlow 2s infinite alternate;
+    }
+    
+    @keyframes pulseGlow {
+      0% {
+        box-shadow: 0 0 10px rgba(56, 189, 248, 0.3), 0 0 20px rgba(56, 189, 248, 0.2), 0 0 30px rgba(56, 189, 248, 0.1);
+      }
+      100% {
+        box-shadow: 0 0 20px rgba(56, 189, 248, 0.5), 0 0 30px rgba(56, 189, 248, 0.3), 0 0 40px rgba(56, 189, 248, 0.2);
+      }
+    }
+    
+    .neon-line {
+      stroke: #38bdf8;
+      stroke-width: 2;
+      filter: drop-shadow(0 0 5px rgba(56, 189, 248, 0.8));
+      animation: flow 3s infinite linear;
+    }
+    
+    @keyframes flow {
+      0% {
+        stroke-dashoffset: 20;
+      }
+      100% {
+        stroke-dashoffset: 0;
+      }
+    }
+  </style>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Set up canvas for neon lines
+      const canvas = document.getElementById('neon-lines');
+      const ctx = canvas.getContext('2d');
+      
+      // Animation variables
+      let animationId = null;
+      let currentIconIndex = 0;
+      let progress = 0;
+      let direction = 1; // 1 for forward, -1 for backward
+      
+      // Store the curved paths for each connection
+      const curvedPaths = [];
+      
+      // Set canvas size to match its display size
+      function resizeCanvas() {
+        const container = canvas.parentElement;
+        canvas.width = container.clientWidth;
+        canvas.height = container.clientHeight;
+        generateCurvedPaths(); // Regenerate paths on resize
+      }
+      
+      // Initial resize
+      resizeCanvas();
+      
+      // Redraw on window resize
+      window.addEventListener('resize', function() {
+        resizeCanvas();
+        if (animationId) {
+          cancelAnimationFrame(animationId);
+        }
+        startAnimation();
+      });
+      
+      // Get positions of elements
+      function getElementPosition(element) {
+        const rect = element.getBoundingClientRect();
+        const containerRect = canvas.parentElement.getBoundingClientRect();
+        return {
+          x: rect.left - containerRect.left + rect.width / 2,
+          y: rect.top - containerRect.top + rect.height / 2
+        };
+      }
+      
+      // Generate curved paths for each connection
+      function generateCurvedPaths() {
+        // Clear existing paths
+        curvedPaths.length = 0;
+        
+        // Get positions
+        const centralIcon = document.getElementById('central-icon');
+        const skillIcons = document.querySelectorAll('.skill-icon');
+        
+        if (!centralIcon || skillIcons.length === 0) return;
+        
+        const centralPos = getElementPosition(centralIcon);
+        
+        // Generate curved path for each skill icon
+        skillIcons.forEach((icon, index) => {
+          const iconPos = getElementPosition(icon);
+          
+          // Create control points for bezier curve
+          const controlPoint1 = {
+            x: centralPos.x + (iconPos.x - centralPos.x) * 0.3,
+            y: centralPos.y + (iconPos.y - centralPos.y) * 0.3 - 30
+          };
+          
+          const controlPoint2 = {
+            x: centralPos.x + (iconPos.x - centralPos.x) * 0.7,
+            y: centralPos.y + (iconPos.y - centralPos.y) * 0.7 - 30
+          };
+          
+          // Store the path
+          curvedPaths[index] = {
+            start: centralPos,
+            cp1: controlPoint1,
+            cp2: controlPoint2,
+            end: iconPos
+          };
+        });
+      }
+      
+      // Draw static lines
+      function drawStaticLines() {
+        // Clear canvas
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        // Get positions
+        const centralIcon = document.getElementById('central-icon');
+        const skillIcons = document.querySelectorAll('.skill-icon');
+        
+        if (!centralIcon || skillIcons.length === 0) return;
+        
+        const centralPos = getElementPosition(centralIcon);
+        
+        // Draw static curved lines to each skill icon (fainter)
+        skillIcons.forEach((icon, index) => {
+          const iconPos = getElementPosition(icon);
+          
+          // Draw faint curved static line
+          ctx.beginPath();
+          ctx.moveTo(centralPos.x, centralPos.y);
+          
+          // Create control points for bezier curve
+          const controlPoint1 = {
+            x: centralPos.x + (iconPos.x - centralPos.x) * 0.3,
+            y: centralPos.y + (iconPos.y - centralPos.y) * 0.3 - 30
+          };
+          
+          const controlPoint2 = {
+            x: centralPos.x + (iconPos.x - centralPos.x) * 0.7,
+            y: centralPos.y + (iconPos.y - centralPos.y) * 0.7 - 30
+          };
+          
+          ctx.bezierCurveTo(
+            controlPoint1.x, controlPoint1.y,
+            controlPoint2.x, controlPoint2.y,
+            iconPos.x, iconPos.y
+          );
+          
+          // Style
+          ctx.strokeStyle = 'rgba(56, 189, 248, 0.2)';
+          ctx.lineWidth = 1;
+          ctx.shadowBlur = 5;
+          ctx.shadowColor = '#38bdf8';
+          ctx.lineCap = 'round';
+          
+          ctx.stroke();
+        });
+      }
+      
+      // Draw animated line along curved path
+      function drawAnimatedLine() {
+        // Clear canvas
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        // Draw static lines first
+        drawStaticLines();
+        
+        // Get positions
+        const centralIcon = document.getElementById('central-icon');
+        const skillIcons = document.querySelectorAll('.skill-icon');
+        
+        if (!centralIcon || skillIcons.length === 0 || curvedPaths.length === 0) return;
+        
+        // Make sure we have a valid icon index
+        if (currentIconIndex >= skillIcons.length) {
+          currentIconIndex = 0;
+        }
+        
+        const path = curvedPaths[currentIconIndex];
+        if (!path) return;
+        
+        // Calculate point along the curved path
+        const point = getPointOnBezierCurve(path, progress);
+        
+        // Draw the animated line up to the current point
+        ctx.beginPath();
+        ctx.moveTo(path.start.x, path.start.y);
+        
+        // Draw partial curve
+        if (direction === 1) {
+          // Forward direction - draw from start to current point
+          drawPartialBezierCurve(ctx, path, 0, progress);
+        } else {
+          // Backward direction - draw from current point to end
+          drawPartialBezierCurve(ctx, path, progress, 1);
+        }
+        
+        // Style
+        ctx.strokeStyle = 'rgba(56, 189, 248, 0.9)';
+        ctx.lineWidth = 3;
+        ctx.shadowBlur = 15;
+        ctx.shadowColor = '#38bdf8';
+        ctx.lineCap = 'round';
+        
+        ctx.stroke();
+        
+        // Draw glow point at the head of the line
+        ctx.beginPath();
+        ctx.arc(point.x, point.y, 6, 0, Math.PI * 2);
+        ctx.fillStyle = '#38bdf8';
+        ctx.shadowBlur = 20;
+        ctx.fill();
+        
+        // Reset shadow
+        ctx.shadowBlur = 0;
+      }
+      
+      // Helper function to get point on bezier curve
+      function getPointOnBezierCurve(path, t) {
+        const { start, cp1, cp2, end } = path;
+        
+        // Clamp t between 0 and 1 to ensure it stays on the path
+        t = Math.max(0, Math.min(1, t));
+        
+        const x = Math.pow(1 - t, 3) * start.x +
+                  3 * Math.pow(1 - t, 2) * t * cp1.x +
+                  3 * (1 - t) * Math.pow(t, 2) * cp2.x +
+                  Math.pow(t, 3) * end.x;
+        
+        const y = Math.pow(1 - t, 3) * start.y +
+                  3 * Math.pow(1 - t, 2) * t * cp1.y +
+                  3 * (1 - t) * Math.pow(t, 2) * cp2.y +
+                  Math.pow(t, 3) * end.y;
+        
+        return { x, y };
+      }      
+      // Helper function to draw partial bezier curve
+      function drawPartialBezierCurve(ctx, path, startT, endT) {
+        const { start, cp1, cp2, end } = path;
+        
+        // For simplicity, we'll approximate by drawing many small line segments
+        const steps = 50;
+        
+        // Only draw if we have a valid range
+        if (startT > endT) return;
+        
+        // Clamp values between 0 and 1
+        startT = Math.max(0, Math.min(1, startT));
+        endT = Math.max(0, Math.min(1, endT));
+        
+        let firstPoint = true;
+        for (let i = 0; i <= steps; i++) {
+          const t = startT + (endT - startT) * (i / steps);
+          const point = getPointOnBezierCurve(path, t);
+          
+          if (firstPoint) {
+            ctx.moveTo(point.x, point.y);
+            firstPoint = false;
+          } else {
+            ctx.lineTo(point.x, point.y);
+          }
+        }
+      }      
+      // Animation loop
+      function animate() {
+        // Update progress
+        progress += direction * 0.01;
+        
+        // Check if we need to change direction or move to next icon
+        if (progress >= 1 && direction === 1) {
+          // Reached the icon, pause briefly then reverse direction
+          setTimeout(() => {
+            direction = -1;
+          }, 200);
+        } else if (progress <= 0 && direction === -1) {
+          // Returned to center, move to next icon
+          currentIconIndex = (currentIconIndex + 1) % document.querySelectorAll('.skill-icon').length;
+          direction = 1;
+          progress = 0;
+        }        
+        drawAnimatedLine();
+        animationId = requestAnimationFrame(animate);
+      }
+      
+      // Start animation
+      function startAnimation() {
+        if (animationId) {
+          cancelAnimationFrame(animationId);
+        }
+        generateCurvedPaths(); // Generate paths before starting
+        animate();
+      }
+      
+      // Initial draw
+      setTimeout(() => {
+        drawStaticLines();
+        startAnimation();
+      }, 100);
+      
+      // Redraw when elements might have moved
+      const observer = new MutationObserver(function() {
+        if (animationId) {
+          cancelAnimationFrame(animationId);
+        }
+        setTimeout(() => {
+          drawStaticLines();
+          startAnimation();
+        }, 100);
+      });
+      
+      observer.observe(document.body, {
+        childList: true,
+        subtree: true
+      });
+    });
+  </script>
+
+  <!-- Contact Banner -->
+    <section class="mt-12 mb-20" id="contact">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8">
+        <div class="lg:col-span-12">
+          <div class="border-white/10 border rounded-2xl pt-12 pr-8 pb-12 pl-8 backdrop-blur-lg bg-gradient-to-r from-white/[0.03] to-transparent text-center">
+            <h3 class="text-2xl font-semibold tracking-tight text-white font-geist">Sẵn sàng cho thử thách mới</h3>
+            <p class="text-base text-neutral-400 mt-6 font-geist mx-auto max-w-2xl">
+              Tôi đang tìm kiếm cơ hội đồng hành lâu dài. Rất mong được trao đổi trực tiếp về cách tôi có thể đóng góp vào sự phát triển của công ty.
+            </p>
+            <div class="flex justify-center gap-4 mt-8">
+              <button onclick="location.href='tel:0968254680'" class="shiny-cta contact-button">
+                <span class="font-geist">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="phone" class="lucide lucide-phone h-5 w-5 inline-flex"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                  <span class="inline-flex text-base">Liên Hệ SĐT</span>
+                </span>
+              </button>
+              <button onclick="location.href='mailto:hunganhlux@gmail.com'" class="shiny-cta contact-button">
+                <span class="font-geist">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="mail" class="lucide lucide-mail h-5 w-5 inline-flex"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"></path><rect x="2" y="4" width="20" height="16" rx="2"></rect></svg>
+                  <span class="inline-flex text-base">Gửi Email</span>
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="relative border-t border-white/10 bg-black/40 backdrop-blur-sm">
+    <div class="max-w-7xl sm:px-6 lg:px-8 mr-auto ml-auto pt-12 pr-4 pb-12 pl-4">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <!-- Brand Column -->
+        <div class="md:col-span-2">
+          <h3 class="text-lg font-semibold tracking-tight text-white mb-3 font-geist">Trần Hữu Hùng</h3>
+          <p class="text-sm text-neutral-400 max-w-md mb-4 font-geist">
+            Freelancer IT kết hợp Marketing. Chuyên tâm tạo ra các sản phẩm số chất lượng cao và hiệu quả.
+          </p>
+          <div class="flex items-center gap-3">
+             <span class="text-xs text-neutral-500 font-mono">HE140208 - FPT University</span>
+          </div>
+        </div>
+
+        <!-- Links Column -->
+        <div class="">
+          <h4 class="text-sm font-medium text-white mb-3 font-geist">Điều hướng</h4>
+          <ul class="space-y-2 text-sm text-neutral-400">
+            <li><a href="#about" class="hover:text-white transition font-geist">Giới thiệu</a></li>
+            <li><a href="#experience" class="hover:text-white transition font-geist">Kinh nghiệm</a></li>
+            <li><a href="#skills" class="hover:text-white transition font-geist">Kỹ năng</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact Column -->
+        <div>
+          <h4 class="text-sm font-medium text-white mb-3 font-geist">Thông tin</h4>
+          <ul class="space-y-2 text-sm text-neutral-400">
+            <li class="flex items-center gap-2">
+               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-neutral-500"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+               <a href="tel:0968254680" class="hover:text-white transition font-geist">0968 254 680</a>
+            </li>
+            <li class="flex items-center gap-2">
+               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-neutral-500"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"></path></svg>
+               <a href="mailto:hunganhlux@gmail.com" class="hover:text-white transition font-geist">hunganhlux@gmail.com</a>
+            </li>
+            <li class="flex items-center gap-2">
+               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-neutral-500"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+               <span class="font-geist">Nghệ An, Việt Nam</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mt-8 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-xs text-neutral-500 font-geist">
+          © 2024 Trần Hữu Hùng. All rights reserved.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+    });
+  </script>
+
+</body></html>
