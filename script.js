@@ -1,9 +1,14 @@
 //hiệu ứng croll------
 
 document.addEventListener('DOMContentLoaded', function() {
+        console.log('Project showcase script loaded');
         const container = document.getElementById('projects-container');
         const cards = document.querySelectorAll('.project-card');
         const section = document.querySelector('#desktop-projects');
+        
+        console.log('Container:', container);
+        console.log('Cards:', cards);
+        console.log('Section:', section);
         
         // Get element position relative to viewport
         function getElementPosition(el) {
@@ -65,14 +70,8 @@ const easedProgress = Math.pow(progress, 2.5);
                 'rgba(0, 0, 0, 0.1) 0px 25px 25px'
               ];
               
-              const glowShadows = [
-                `rgba(140, 255, 50, ${0.5 * glowIntensity}) 0px 0px ${20 * glowIntensity}px, rgba(0, 0, 0, 0.1) 0px 25px 25px`,
-                `rgba(140, 255, 50, ${0.7 * glowIntensity}) 0px 0px ${30 * glowIntensity}px, rgba(0, 0, 0, 0.1) 0px 25px 25px`,
-                `rgba(140, 255, 50, ${0.5 * glowIntensity}) 0px 0px ${20 * glowIntensity}px, rgba(0, 0, 0, 0.1) 0px 25px 25px`
-              ];
-              
-              card.style.boxShadow = progress > 0.3 ? glowShadows[index] : 
-                                    `${baseShadows[index]}, ${glowShadows[index].split(',')[0]}`;
+              // Remove the green neon glow effect
+              card.style.boxShadow = 'rgba(0, 0, 0, 0.1) 0px 25px 25px';
             } else {
               card.style.boxShadow = 'rgba(0, 0, 0, 0.1) 0px 25px 25px';
             }
@@ -104,15 +103,21 @@ const easedProgress = Math.pow(progress, 2.5);
         
         // Also check on load in case the element is already in view
         handleScroll();
+        
+        console.log('Project showcase scroll animation initialized');
       });
 
 
 // kỹ năng mềm //
 
 document.addEventListener('DOMContentLoaded', function() {
+      console.log('Soft skills animation script loaded');
       // Set up canvas for neon lines
       const canvas = document.getElementById('neon-lines');
       const ctx = canvas.getContext('2d');
+      
+      console.log('Canvas:', canvas);
+      console.log('Context:', ctx);
       
       // Animation variables
       let animationId = null;
@@ -379,6 +384,8 @@ document.addEventListener('DOMContentLoaded', function() {
         drawStaticLines();
         startAnimation();
       }, 100);
+      
+      console.log('Soft skills animation initialized');
       
       // Redraw when elements might have moved
       const observer = new MutationObserver(function() {
