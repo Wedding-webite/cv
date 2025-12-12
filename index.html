@@ -8,8 +8,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
-<link rel="stylesheet" href="/style.css">
-<script src="/script.js"></script>
+<link rel="stylesheet" href="./style.css">
+<script src="./script.js"></script>
 <link id="all-fonts-link-font-geist" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap">
 <style id="all-fonts-style-font-geist">
 .font-geist { font-family: 'Geist', sans-serif !important; }
@@ -26,7 +26,422 @@
   <!-- Background overlay for readability -->
   <div class="fixed inset-0 -z-10 bg-black/40 backdrop-blur-[1px]"></div>
 
-  <!-- Navigation Header -->
+
+
+
+  <!-- ////Scroll////// -->
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('Project showcase script loaded');
+        const container = document.getElementById('projects-container');
+        const cards = document.querySelectorAll('.project-card');
+        const section = document.querySelector('#desktop-projects');
+        
+        console.log('Container:', container);
+        console.log('Cards:', cards);
+        console.log('Section:', section);
+        
+        // Get element position relative to viewport
+        function getElementPosition(el) {
+          const rect = el.getBoundingClientRect();
+          const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+          // Calculate how much of the element is visible in the viewport (0 to 1)
+          const elementTop = rect.top;
+          const elementBottom = rect.bottom;
+          const visibleHeight = Math.min(elementBottom, windowHeight) - Math.max(elementTop, 0);
+          const elementHeight = rect.height;
+          
+          if (elementHeight <= 0) return 0;
+          
+          // Return percentage of element visible (0 to 1)
+          return Math.max(0, Math.min(1, visibleHeight / elementHeight));
+        }
+        
+        // Update card positions based on scroll progress
+        function updateCardPositions(progress) {
+          // Clamp progress between 0 and 1
+          progress = Math.max(0, Math.min(1, progress));
+          
+          // Smooth easing function for natural movement
+const easedProgress = Math.pow(progress, 2.5); 
+          
+          // Define target positions for each card
+          const targets = [
+  { rotate: 0, translateX: -60, translateY: 0, zIndex: 10 },
+  { rotate: 0, translateX: 0, translateY: 0, zIndex: 11 },
+  { rotate: 0, translateX: 60, translateY: 0, zIndex: 10 }
+];
+          
+          // Define initial stacked positions
+          const initials = [
+            { rotate: -10, translateX: 0, translateY: 0, zIndex: 3 },
+            { rotate: -6, translateX: 0, translateY: 0, zIndex: 2 },
+            { rotate: 0, translateX: 0, translateY: 0, zIndex: 1 }
+          ];
+          
+          // Interpolate between initial and target positions
+          cards.forEach((card, index) => {
+            const initial = initials[index];
+            const target = targets[index];
+            
+            // Calculate interpolated values
+            const rotate = initial.rotate + (target.rotate - initial.rotate) * easedProgress;
+            const translateX = initial.translateX + (target.translateX - initial.translateX) * easedProgress;
+            const translateY = initial.translateY + (target.translateY - initial.translateY) * easedProgress;
+            
+            // Apply transform
+            card.style.transform = `rotate(${rotate}deg) translateX(${translateX}px) translateY(${translateY}px)`;
+            
+            // Apply glow effect based on progress
+            if (progress > 0.1) {
+              const glowIntensity = Math.min(1, progress * 1.5);
+              const baseShadows = [
+                'rgba(0, 0, 0, 0.1) 0px 25px 25px',
+                'rgba(0, 0, 0, 0.1) 0px 25px 25px',
+                'rgba(0, 0, 0, 0.1) 0px 25px 25px'
+              ];
+              
+              // Remove the green neon glow effect
+              card.style.boxShadow = 'rgba(0, 0, 0, 0.1) 0px 25px 25px';
+            } else {
+              card.style.boxShadow = 'rgba(0, 0, 0, 0.1) 0px 25px 25px';
+            }
+            
+            // Update z-index gradually
+            const zIndex = Math.round(initial.zIndex + (target.zIndex - initial.zIndex) * easedProgress);
+            card.style.zIndex = zIndex.toString();
+          });
+        }
+        
+        // Scroll event listener with throttling
+        let ticking = false;
+        function handleScroll() {
+          if (!ticking) {
+            requestAnimationFrame(() => {
+              const progress = getElementPosition(section);
+              updateCardPositions(progress);
+              ticking = false;
+            });
+            ticking = true;
+          }
+        }
+        
+        // Initialize cards in stacked position
+        updateCardPositions(0);
+        
+        // Listen for scroll events
+        window.addEventListener('scroll', handleScroll);
+        
+        // Also check on load in case the element is already in view
+        handleScroll();
+        
+        console.log('Project showcase scroll animation initialized');
+      });
+
+
+// kỹ năng mềm //
+
+document.addEventListener('DOMContentLoaded', function() {
+      console.log('Soft skills animation script loaded');
+      // Set up canvas for neon lines
+      const canvas = document.getElementById('neon-lines');
+      const ctx = canvas.getContext('2d');
+      
+      console.log('Canvas:', canvas);
+      console.log('Context:', ctx);
+      
+      // Animation variables
+      let animationId = null;
+      let currentIconIndex = 0;
+      let progress = 0;
+      let direction = 1; // 1 for forward, -1 for backward
+      
+      // Store the curved paths for each connection
+      const curvedPaths = [];
+      
+      // Set canvas size to match its display size
+      function resizeCanvas() {
+        const container = canvas.parentElement;
+        canvas.width = container.clientWidth;
+        canvas.height = container.clientHeight;
+        generateCurvedPaths(); // Regenerate paths on resize
+      }
+      
+      // Initial resize
+      resizeCanvas();
+      
+      // Redraw on window resize
+      window.addEventListener('resize', function() {
+        resizeCanvas();
+        if (animationId) {
+          cancelAnimationFrame(animationId);
+        }
+        startAnimation();
+      });
+      
+      // Get positions of elements
+      function getElementPosition(element) {
+        const rect = element.getBoundingClientRect();
+        const containerRect = canvas.parentElement.getBoundingClientRect();
+        return {
+          x: rect.left - containerRect.left + rect.width / 2,
+          y: rect.top - containerRect.top + rect.height / 2
+        };
+      }
+      
+      // Generate curved paths for each connection
+      function generateCurvedPaths() {
+        // Clear existing paths
+        curvedPaths.length = 0;
+        
+        // Get positions
+        const centralIcon = document.getElementById('central-icon');
+        const skillIcons = document.querySelectorAll('.skill-icon');
+        
+        if (!centralIcon || skillIcons.length === 0) return;
+        
+        const centralPos = getElementPosition(centralIcon);
+        
+        // Generate curved path for each skill icon
+        skillIcons.forEach((icon, index) => {
+          const iconPos = getElementPosition(icon);
+          
+          // Create control points for bezier curve
+          const controlPoint1 = {
+            x: centralPos.x + (iconPos.x - centralPos.x) * 0.3,
+            y: centralPos.y + (iconPos.y - centralPos.y) * 0.3 - 30
+          };
+          
+          const controlPoint2 = {
+            x: centralPos.x + (iconPos.x - centralPos.x) * 0.7,
+            y: centralPos.y + (iconPos.y - centralPos.y) * 0.7 - 30
+          };
+          
+          // Store the path
+          curvedPaths[index] = {
+            start: centralPos,
+            cp1: controlPoint1,
+            cp2: controlPoint2,
+            end: iconPos
+          };
+        });
+      }
+      
+      // Draw static lines
+      function drawStaticLines() {
+        // Clear canvas
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        // Get positions
+        const centralIcon = document.getElementById('central-icon');
+        const skillIcons = document.querySelectorAll('.skill-icon');
+        
+        if (!centralIcon || skillIcons.length === 0) return;
+        
+        const centralPos = getElementPosition(centralIcon);
+        
+        // Draw static curved lines to each skill icon (fainter)
+        skillIcons.forEach((icon, index) => {
+          const iconPos = getElementPosition(icon);
+          
+          // Draw faint curved static line
+          ctx.beginPath();
+          ctx.moveTo(centralPos.x, centralPos.y);
+          
+          // Create control points for bezier curve
+          const controlPoint1 = {
+            x: centralPos.x + (iconPos.x - centralPos.x) * 0.3,
+            y: centralPos.y + (iconPos.y - centralPos.y) * 0.3 - 30
+          };
+          
+          const controlPoint2 = {
+            x: centralPos.x + (iconPos.x - centralPos.x) * 0.7,
+            y: centralPos.y + (iconPos.y - centralPos.y) * 0.7 - 30
+          };
+          
+          ctx.bezierCurveTo(
+            controlPoint1.x, controlPoint1.y,
+            controlPoint2.x, controlPoint2.y,
+            iconPos.x, iconPos.y
+          );
+          
+          // Style
+          ctx.strokeStyle = 'rgba(56, 189, 248, 0.2)';
+          ctx.lineWidth = 1;
+          ctx.shadowBlur = 5;
+          ctx.shadowColor = '#38bdf8';
+          ctx.lineCap = 'round';
+          
+          ctx.stroke();
+        });
+      }
+      
+      // Draw animated line along curved path
+      function drawAnimatedLine() {
+        // Clear canvas
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        // Draw static lines first
+        drawStaticLines();
+        
+        // Get positions
+        const centralIcon = document.getElementById('central-icon');
+        const skillIcons = document.querySelectorAll('.skill-icon');
+        
+        if (!centralIcon || skillIcons.length === 0 || curvedPaths.length === 0) return;
+        
+        // Make sure we have a valid icon index
+        if (currentIconIndex >= skillIcons.length) {
+          currentIconIndex = 0;
+        }
+        
+        const path = curvedPaths[currentIconIndex];
+        if (!path) return;
+        
+        // Calculate point along the curved path
+        const point = getPointOnBezierCurve(path, progress);
+        
+        // Draw the animated line up to the current point
+        ctx.beginPath();
+        ctx.moveTo(path.start.x, path.start.y);
+        
+        // Draw partial curve
+        if (direction === 1) {
+          // Forward direction - draw from start to current point
+          drawPartialBezierCurve(ctx, path, 0, progress);
+        } else {
+          // Backward direction - draw from current point to end
+          drawPartialBezierCurve(ctx, path, progress, 1);
+        }
+        
+        // Style
+        ctx.strokeStyle = 'rgba(56, 189, 248, 0.9)';
+        ctx.lineWidth = 3;
+        ctx.shadowBlur = 15;
+        ctx.shadowColor = '#38bdf8';
+        ctx.lineCap = 'round';
+        
+        ctx.stroke();
+        
+        // Draw glow point at the head of the line
+        ctx.beginPath();
+        ctx.arc(point.x, point.y, 6, 0, Math.PI * 2);
+        ctx.fillStyle = '#38bdf8';
+        ctx.shadowBlur = 20;
+        ctx.fill();
+        
+        // Reset shadow
+        ctx.shadowBlur = 0;
+      }
+      
+      // Helper function to get point on bezier curve
+      function getPointOnBezierCurve(path, t) {
+        const { start, cp1, cp2, end } = path;
+        
+        // Clamp t between 0 and 1 to ensure it stays on the path
+        t = Math.max(0, Math.min(1, t));
+        
+        const x = Math.pow(1 - t, 3) * start.x +
+                  3 * Math.pow(1 - t, 2) * t * cp1.x +
+                  3 * (1 - t) * Math.pow(t, 2) * cp2.x +
+                  Math.pow(t, 3) * end.x;
+        
+        const y = Math.pow(1 - t, 3) * start.y +
+                  3 * Math.pow(1 - t, 2) * t * cp1.y +
+                  3 * (1 - t) * Math.pow(t, 2) * cp2.y +
+                  Math.pow(t, 3) * end.y;
+        
+        return { x, y };
+      }      
+      // Helper function to draw partial bezier curve
+      function drawPartialBezierCurve(ctx, path, startT, endT) {
+        const { start, cp1, cp2, end } = path;
+        
+        // For simplicity, we'll approximate by drawing many small line segments
+        const steps = 50;
+        
+        // Only draw if we have a valid range
+        if (startT > endT) return;
+        
+        // Clamp values between 0 and 1
+        startT = Math.max(0, Math.min(1, startT));
+        endT = Math.max(0, Math.min(1, endT));
+        
+        let firstPoint = true;
+        for (let i = 0; i <= steps; i++) {
+          const t = startT + (endT - startT) * (i / steps);
+          const point = getPointOnBezierCurve(path, t);
+          
+          if (firstPoint) {
+            ctx.moveTo(point.x, point.y);
+            firstPoint = false;
+          } else {
+            ctx.lineTo(point.x, point.y);
+          }
+        }
+      }      
+      // Animation loop
+      function animate() {
+        // Update progress
+        progress += direction * 0.01;
+        
+        // Check if we need to change direction or move to next icon
+        if (progress >= 1 && direction === 1) {
+          // Reached the icon, pause briefly then reverse direction
+          setTimeout(() => {
+            direction = -1;
+          }, 200);
+        } else if (progress <= 0 && direction === -1) {
+          // Returned to center, move to next icon
+          currentIconIndex = (currentIconIndex + 1) % document.querySelectorAll('.skill-icon').length;
+          direction = 1;
+          progress = 0;
+        }        
+        drawAnimatedLine();
+        animationId = requestAnimationFrame(animate);
+      }
+      
+      // Start animation
+      function startAnimation() {
+        if (animationId) {
+          cancelAnimationFrame(animationId);
+        }
+        generateCurvedPaths(); // Generate paths before starting
+        animate();
+      }
+      
+      // Initial draw
+      setTimeout(() => {
+        drawStaticLines();
+        startAnimation();
+      }, 100);
+      
+      console.log('Soft skills animation initialized');
+      
+      // Redraw when elements might have moved
+      const observer = new MutationObserver(function() {
+        if (animationId) {
+          cancelAnimationFrame(animationId);
+        }
+        setTimeout(() => {
+          drawStaticLines();
+          startAnimation();
+        }, 100);
+      });
+      
+      observer.observe(document.body, {
+        childList: true,
+        subtree: true
+      });
+    });
+
+
+  </script>
+
+
+
+    <!-- Navigation Header -->
   <nav class="relative border-b border-white/10 bg-black/20 backdrop-blur-md sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16">
@@ -210,16 +625,78 @@
             
             <h4 class="text-sm font-semibold text-neutral-300 mb-3 font-geist">Các học phần tiêu biểu:</h4>
             
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
-              <span class="text-[11px] border border-white/10 bg-white/5 px-2 py-1 rounded text-neutral-400">Programming Fundamentals</span>
-              <span class="text-[11px] border border-white/10 bg-white/5 px-2 py-1 rounded text-neutral-400">Object-Oriented Programming</span>
-              <span class="text-[11px] border border-white/10 bg-white/5 px-2 py-1 rounded text-neutral-400">Database Systems</span>
-              <span class="text-[11px] border border-white/10 bg-white/5 px-2 py-1 rounded text-neutral-400">Data Structures & Algorithms</span>
-              <span class="text-[11px] border border-white/10 bg-white/5 px-2 py-1 rounded text-neutral-400">Computer Networks</span>
-              <span class="text-[11px] border border-white/10 bg-white/5 px-2 py-1 rounded text-neutral-400">Web Application Development</span>
-              <span class="text-[11px] border border-white/10 bg-white/5 px-2 py-1 rounded text-neutral-400">Mobile Application Development</span>
-              <span class="text-[11px] border border-white/10 bg-white/5 px-2 py-1 rounded text-neutral-400">Software Engineering</span>
-              <span class="text-[11px] border border-white/10 bg-white/5 px-2 py-1 rounded text-neutral-400">Cloud & Server-side Development</span>
+            <div class="flex flex-wrap gap-2">
+              <!-- Programming Fundamentals - Purple -->
+              <span class="text-xs flex items-center gap-1 px-3 py-1.5 rounded-full border bg-gradient-to-r from-purple-500/20 to-purple-700/20 border-purple-500/30 backdrop-blur-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-purple-400" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+                <span class="text-purple-200">Programming Fundamentals</span>
+              </span>
+              
+              <!-- Object-Oriented Programming - Purple -->
+              <span class="text-xs flex items-center gap-1 px-3 py-1.5 rounded-full border bg-gradient-to-r from-purple-500/20 to-purple-700/20 border-purple-500/30 backdrop-blur-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-purple-400" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+                <span class="text-purple-200">Object-Oriented Programming</span>
+              </span>
+              
+              <!-- Database Systems - Purple -->
+              <span class="text-xs flex items-center gap-1 px-3 py-1.5 rounded-full border bg-gradient-to-r from-purple-500/20 to-purple-700/20 border-purple-500/30 backdrop-blur-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-purple-400" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+                <span class="text-purple-200">Database Systems</span>
+              </span>
+              
+              <!-- Data Structures & Algorithms - Purple -->
+              <span class="text-xs flex items-center gap-1 px-3 py-1.5 rounded-full border bg-gradient-to-r from-purple-500/20 to-purple-700/20 border-purple-500/30 backdrop-blur-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-purple-400" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+                <span class="text-purple-200">Data Structures & Algorithms</span>
+              </span>
+              
+              <!-- Computer Networks - Blue -->
+              <span class="text-xs flex items-center gap-1 px-3 py-1.5 rounded-full border bg-gradient-to-r from-blue-500/20 to-blue-700/20 border-blue-500/30 backdrop-blur-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-blue-400" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M2 5l3 3 3-3-3-3-3 3zM8 5l3 3 3-3-3-3-3 3zM5 8l3 3 3-3-3-3-3 3zM11 8l3 3 3-3-3-3-3 3zM8 11l3 3 3-3-3-3-3 3zM5 14l3 3 3-3-3-3-3 3z" clip-rule="evenodd" />
+                </svg>
+                <span class="text-blue-200">Computer Networks</span>
+              </span>
+              
+              <!-- Web Application Development - Green -->
+              <span class="text-xs flex items-center gap-1 px-3 py-1.5 rounded-full border bg-gradient-to-r from-green-500/20 to-green-700/20 border-green-500/30 backdrop-blur-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-green-400" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M4 4a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V8a2 2 0 00-2-2h-5L9 4H4zm3 6a1 1 0 000 2h6a1 1 0 100-2H7z" clip-rule="evenodd" />
+                </svg>
+                <span class="text-green-200">Web Application Development</span>
+              </span>
+              
+              <!-- Mobile Application Development - Green -->
+              <span class="text-xs flex items-center gap-1 px-3 py-1.5 rounded-full border bg-gradient-to-r from-green-500/20 to-green-700/20 border-green-500/30 backdrop-blur-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-green-400" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M7 2a2 2 0 00-2 2v12a2 2 0 002 2h6a2 2 0 002-2V4a2 2 0 00-2-2H7zm1 14a1 1 0 110-2 1 1 0 010 2zm4 0a1 1 0 110-2 1 1 0 010 2zM8 4h4v2H8V4z" clip-rule="evenodd" />
+                </svg>
+                <span class="text-green-200">Mobile Application Development</span>
+              </span>
+              
+              <!-- Software Engineering - Purple -->
+              <span class="text-xs flex items-center gap-1 px-3 py-1.5 rounded-full border bg-gradient-to-r from-purple-500/20 to-purple-700/20 border-purple-500/30 backdrop-blur-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-purple-400" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd" />
+                </svg>
+                <span class="text-purple-200">Software Engineering</span>
+              </span>
+              
+              <!-- Cloud & Server-side Development - Blue -->
+              <span class="text-xs flex items-center gap-1 px-3 py-1.5 rounded-full border bg-gradient-to-r from-blue-500/20 to-blue-700/20 border-blue-500/30 backdrop-blur-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-blue-400" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M5.5 17.5a.5.5 0 01-.5-.5v-1.5a.5.5 0 011 0V17a.5.5 0 01-.5.5zm11 0a.5.5 0 01-.5-.5v-1.5a.5.5 0 011 0V17a.5.5 0 01-.5.5zm-12-2a.5.5 0 01-.5-.5v-1.5a.5.5 0 011 0V15a.5.5 0 01-.5.5zm12 0a.5.5 0 01-.5-.5v-1.5a.5.5 0 011 0V15a.5.5 0 01-.5.5zm-13-3a.5.5 0 01-.5-.5v-1.5a.5.5 0 011 0V12a.5.5 0 01-.5.5zm14 0a.5.5 0 01-.5-.5v-1.5a.5.5 0 011 0V12a.5.5 0 01-.5.5zm-14-3a.5.5 0 01-.5-.5V8.5a.5.5 0 011 0V10a.5.5 0 01-.5.5zm14 0a.5.5 0 01-.5-.5V8.5a.5.5 0 011 0V10a.5.5 0 01-.5.5zm-15-3A.5.5 0 011 7V5.5a.5.5 0 011 0V7a.5.5 0 01-.5.5zm16 0A.5.5 0 0117 7V5.5a.5.5 0 011 0V7a.5.5 0 01-.5.5zm-16-3A.5.5 0 011 4V2.5a.5.5 0 011 0V4a.5.5 0 01-.5.5zm16 0A.5.5 0 0117 4V2.5a.5.5 0 011 0V4a.5.5 0 01-.5.5z" clip-rule="evenodd" />
+                </svg>
+                <span class="text-blue-200">Cloud & Server-side Development</span>
+              </span>
             </div>
           </div>
         </section>
@@ -243,7 +720,7 @@
               <p class="text-sm text-blue-400 mb-3">Công ty CP Thương Mại & XNK Đức Tín</p>
               
               <div class="text-sm text-neutral-400 space-y-3 font-geist">
-                <p>Nghiên cứu thị trường quốc tế, phân tích hành vi khách hàng (Mỹ, Nhật, EU, Hàn) và lên chiến lược Marketing cho sản phẩm cao cấp.</p>
+                <p>Nghiên cứu thị trường quốc tế, phân tích hành vi khách hàng (Mỹ, Nhật, EU) và lên chiến lược Marketing cho sản phẩm cao cấp.</p>
                 <ul class="list-disc list-outside ml-4 space-y-1 text-neutral-400">
                   <li>Quản lý hệ thống quảng cáo <span class="text-neutral-200">Facebook Ads, YouTube, Amazon PPC</span>.</li>
                   <li>Dựng video ads và tối ưu nội dung cho từng phân khúc.</li>
@@ -374,6 +851,7 @@
         <div class="lg:col-span-12">
           <div class="border-white/10 border rounded-2xl pt-12 pr-8 pb-12 pl-8 backdrop-blur-lg bg-gradient-to-r from-white/[0.03] to-transparent text-center">
             <h3 class="text-2xl font-semibold tracking-tight text-white font-geist">Dự án tiêu biểu</h3>
+            <p class="text-base text-neutral-400 mt-2 font-geist mx-auto max-w-2xl">Những dự án đã hoàn thành với chất lượng cao và hiệu quả rõ rệt</p>
             <div class="relative flex items-center justify-center py-12 sm:py-20 hidden md:flex" style="min-height: 450px;" id="desktop-projects">
               <div class="container max-w-full" style="position: relative; display: flex; justify-content: center; align-items: center; height: 100%; transition: all 0.5s ease;" id="projects-container">
                 <!-- Project 1 -->
@@ -384,7 +862,7 @@
                         <li><span class="text-neutral-200">Vai trò:</span> Tạo landing page, tối ưu UX/UI, gắn GA4 + Pixel</li>
                         <li><span class="text-neutral-200">Kết quả:</span> Tăng 25% tỉ lệ chuyển đổi trong 2 tháng</li>
                       </ul>
-                      <div class="mt-4 text-xs text-neutral-400 italic font-geist">(Hiệu quả tối ưu được chứng minh qua dự án.)</div>
+                      <div class="mt-4 text-xs text-neutral-400 italic font-geist">Tối ưu trải nghiệm người dùng giúp tăng tỷ lệ chuyển đổi đáng kể</div>
                     </div>
                   </div>
                 </div>
@@ -397,7 +875,7 @@
                         <li><span class="text-neutral-200">Vai trò:</span> Hỗ trợ code, tối ưu SEO technical, thiết lập tracking</li>
                         <li><span class="text-neutral-200">Kết quả:</span> Tốc độ website tăng 40%, SEO onpage đạt chuẩn</li>
                       </ul>
-                      <div class="mt-4 text-xs text-neutral-400 italic font-geist">(Dựa trên số liệu thực tế của dự án.)</div>
+                      <div class="mt-4 text-xs text-neutral-400 italic font-geist">Cải thiện hiệu suất website, đáp ứng yêu cầu kỹ thuật doanh nghiệp</div>
                     </div>
                   </div>
                 </div>
@@ -411,7 +889,7 @@
                         <li><span class="text-neutral-200">Ngân sách:</span> 20–50 triệu (hợp lý)</li>
                         <li><span class="text-neutral-200">Kết quả:</span> Tối ưu CPA, tăng số lượng khách hàng tiềm năng 30%</li>
                       </ul>
-                      <div class="mt-4 text-xs text-neutral-400 italic font-geist">(Hiệu quả được đo lường rõ ràng qua từng chiến dịch.)</div>
+                      <div class="mt-4 text-xs text-neutral-400 italic font-geist">Tối ưu chiến dịch quảng cáo, giảm chi phí và tăng hiệu quả chuyển đổi</div>
                     </div>
                   </div>
                 </div>
@@ -427,7 +905,7 @@
                   <li><span class="text-neutral-200">Vai trò:</span> Tạo landing page, tối ưu UX/UI, gắn GA4 + Pixel</li>
                   <li><span class="text-neutral-200">Kết quả:</span> Tăng 25% tỉ lệ chuyển đổi trong 2 tháng</li>
                 </ul>
-                <div class="mt-4 text-xs text-neutral-400 italic font-geist">(Nhìn vào là thấy mày có thực chiến.)</div>
+                <div class="mt-4 text-xs text-neutral-400 italic font-geist">Tối ưu trải nghiệm người dùng giúp tăng tỷ lệ chuyển đổi đáng kể</div>
               </div>
               
               <!-- Project 2 -->
@@ -437,7 +915,7 @@
                   <li><span class="text-neutral-200">Vai trò:</span> Hỗ trợ code, tối ưu SEO technical, thiết lập tracking</li>
                   <li><span class="text-neutral-200">Kết quả:</span> Tốc độ website tăng 40%, SEO onpage đạt chuẩn</li>
                 </ul>
-                <div class="mt-4 text-xs text-neutral-400 italic font-geist">(Nhìn vào là thấy mày có thực chiến.)</div>
+                <div class="mt-4 text-xs text-neutral-400 italic font-geist">Cải thiện hiệu suất website, đáp ứng yêu cầu kỹ thuật doanh nghiệp</div>
               </div>
               
               <!-- Project 3 -->
@@ -447,7 +925,7 @@
                   <li><span class="text-neutral-200">Ngân sách:</span> 20–50 triệu (hợp lý)</li>
                   <li><span class="text-neutral-200">Kết quả:</span> Tối ưu CPA, tăng số lượng khách hàng tiềm năng 30%</li>
                 </ul>
-                <div class="mt-4 text-xs text-neutral-400 italic font-geist">(Nhìn vào là thấy mày có thực chiến.)</div>
+                <div class="mt-4 text-xs text-neutral-400 italic font-geist">Tối ưu chiến dịch quảng cáo, giảm chi phí và tăng hiệu quả chuyển đổi</div>
               </div>
             </div>
           </div>
