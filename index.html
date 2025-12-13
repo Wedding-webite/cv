@@ -14,6 +14,46 @@
 <style id="all-fonts-style-font-geist">
 .font-geist { font-family: 'Geist', sans-serif !important; }
 </style>
+<style>
+  /* 3D Profile Card Styles */
+  .profile-card-3d {
+    perspective: 1000px;
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease;
+  }
+  
+  .profile-card-3d:hover {
+    transform: rotateY(10deg) rotateX(5deg) translateZ(20px);
+  }
+  
+  .profile-content-3d {
+    transform-style: preserve-3d;
+    transition: transform 0.3s ease;
+  }
+  
+  .profile-card-3d:hover .profile-content-3d {
+    transform: translateZ(30px);
+  }
+  
+  /* Shadow effect for 3D depth */
+  .profile-card-3d::before {
+    content: '';
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    width: 80%;
+    height: 80%;
+    background: rgba(0, 0, 0, 0.3);
+    filter: blur(20px);
+    z-index: -1;
+    transition: transform 0.5s ease;
+    transform: translateZ(-50px);
+  }
+  
+  .profile-card-3d:hover::before {
+    transform: translateZ(-70px) scale(1.1);
+  }
+</style>
 </head>
 <body class="h-full bg-[#0b0b0c] text-neutral-200 antialiased" style="font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial">
   
@@ -491,8 +531,8 @@ document.addEventListener('DOMContentLoaded', function() {
       
       <!-- Left Sidebar: Profile Card (Sticky) -->
       <section class="lg:col-span-4 lg:sticky lg:top-24 h-fit">
-        <div class="relative shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)] overflow-hidden border-white/10 border rounded-3xl backdrop-blur-lg bg-black/20">
-          <div class="p-3 sm:p-4">
+        <div class="profile-card-3d relative shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)] overflow-hidden border-white/10 border rounded-3xl backdrop-blur-lg bg-black/20">
+          <div class="profile-content-3d p-3 sm:p-4">
             <!-- Profile Image -->
             <div class="relative rounded-2xl overflow-hidden bg-neutral-900 ring-1 ring-white/10 group">
               <div class="h-64 sm:h-80 w-full flex items-center justify-center overflow-hidden">
@@ -535,12 +575,12 @@ document.addEventListener('DOMContentLoaded', function() {
               <div class="my-5 h-px bg-gradient-to-r from-white/10 via-white/5 to-transparent"></div>
 
               <div class="mb-2">
-                <button class="shiny-cta medium w-full">
+                <a href="tel:0982345830" class="shiny-cta medium w-full inline-block text-center">
                   <span class="font-geist">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="send" class="lucide lucide-send h-4 w-4 inline-flex"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path><path d="m21.854 2.147-10.94 10.939"></path></svg>
                     <span class="inline-flex">Liên hệ ngay</span>
                   </span>
-                </button>
+                </a>
               </div>
             </div>
           </div>
@@ -619,7 +659,7 @@ document.addEventListener('DOMContentLoaded', function() {
               </div>
               <div class="bg-white/5 p-3 rounded-lg">
                 <p class="text-xs text-neutral-400 mb-1">1 kỳ</p>
-                <p class="text-sm text-white font-medium">Thực tập doanh nghiệp bắt buộc</p>
+                <p class="text-sm text-white font-medium">Thực tập doanh nghiệp</p>
               </div>
             </div>
             
@@ -722,14 +762,48 @@ document.addEventListener('DOMContentLoaded', function() {
               <div class="text-sm text-neutral-400 space-y-3 font-geist">
                 <p>Nghiên cứu thị trường quốc tế, phân tích hành vi khách hàng (Mỹ, Nhật, EU) và lên chiến lược Marketing cho sản phẩm cao cấp.</p>
                 <ul class="list-disc list-outside ml-4 space-y-1 text-neutral-400">
-                  <li>Quản lý hệ thống quảng cáo <span class="text-neutral-200">Facebook Ads, YouTube, Amazon PPC</span>.</li>
+                  <li>Quản lý hệ thống quảng cáo <span class="font-semibold text-neutral-200">Facebook Ads</span>, <span class="font-semibold text-neutral-200">YouTube</span>, <span class="font-semibold text-neutral-200">Amazon PPC</span>.</li>
                   <li>Dựng video ads và tối ưu nội dung cho từng phân khúc.</li>
-                  <li>Xây dựng hệ thống Landing Page bán hàng chuẩn SEO & High Performance.</li>
+                  <li>Xây dựng hệ thống <span class="font-semibold text-neutral-200">Landing Page</span> bán hàng chuẩn SEO & High Performance.</li>
                 </ul>
                 <div class="mt-3 p-3 rounded-xl bg-blue-500/10 border border-blue-500/20">
                    <p class="text-xs font-semibold text-blue-200 mb-1">Thành tựu:</p>
                    <p class="text-xs text-blue-100/70">• Tăng trưởng doanh thu B2C quốc tế 25–40%/năm.</p>
                    <p class="text-xs text-blue-100/70">• Tăng tỷ lệ chuyển đổi Landing Page 20–35% (UI/UX & Performance).</p>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Job 2 -->
+            <div class="relative group">
+              <div class="absolute -left-[29px] mt-1.5 h-3 w-3 rounded-full border border-black bg-blue-500 ring-4 ring-black"></div>
+              
+              <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-2">
+                 <h4 class="text-lg font-medium text-neutral-100 font-geist">Digital Marketing Executive</h4>
+                 <span class="text-xs text-neutral-400 font-mono">2024 – nay</span>
+              </div>
+              <p class="text-sm text-blue-400 mb-3">Edupia Tutor</p>
+              
+              <div class="text-sm text-neutral-400 space-y-3 font-geist">
+                <p>Chương trình Gia Sư Tiếng Anh chất lượng cao – luyện Cambridge, HSG, chuyển cấp, IELTS</p>
+                
+                <p class="font-semibold text-neutral-300">Mô tả công việc:</p>
+                <ul class="list-disc list-outside ml-4 space-y-1 text-neutral-400">
+                  <li>Xây dựng và triển khai kế hoạch Digital Marketing cho các sản phẩm gia sư tiếng Anh 1-1 và nhóm nhỏ.</li>
+                  <li>Phối hợp với học thuật để hiểu USP của giáo viên (Sư phạm/NN hàng đầu, kinh nghiệm HSG – IELTS) và chuyển hóa thành thông điệp truyền thông hiệu quả.</li>
+                  <li>Thiết kế và tối ưu Landing Page tuyển sinh bằng <span class="font-semibold text-neutral-200">Webflow/Framer</span>, đảm bảo chuẩn SEO & tốc độ tải trang.</li>
+                  <li>Quản lý và tối ưu <span class="font-semibold text-neutral-200">Facebook Ads</span>, <span class="font-semibold text-neutral-200">Google Ads</span>, <span class="font-semibold text-neutral-200">TikTok Ads</span>, tập trung vào lead quality & conversion rate.</li>
+                  <li>Triển khai tracking đa nền tảng (<span class="font-semibold text-neutral-200">Pixel</span>, <span class="font-semibold text-neutral-200">GA4</span>, <span class="font-semibold text-neutral-200">GTM</span>), thiết lập funnel theo hành vi phụ huynh.</li>
+                  <li>Sản xuất nội dung video ngắn cho quảng cáo (<span class="font-semibold text-neutral-200">CapCut</span>/<span class="font-semibold text-neutral-200">PR</span>/<span class="font-semibold text-neutral-200">AE</span>), tập trung vào insight phụ huynh cấp 1–THCS.</li>
+                </ul>
+                
+                <div class="mt-3 p-3 rounded-xl bg-blue-500/10 border border-blue-500/20">
+                   <p class="text-xs font-semibold text-blue-200 mb-1">Thành tựu nổi bật:</p>
+                   <p class="text-xs text-blue-100/70">• Tăng 35% số lượng lead chất lượng cao (Qualified Leads) trong 6 tháng.</p>
+                   <p class="text-xs text-blue-100/70">• Giảm 18–25% chi phí/lead (CPL) nhờ tối ưu Landing Page + A/B Testing thông điệp.</p>
+                   <p class="text-xs text-blue-100/70">• Xây dựng hệ thống Landing Page mới, giúp tăng tỷ lệ chuyển đổi trang 20–30%.</p>
+                   <p class="text-xs text-blue-100/70">• Tạo hơn 100+ video ads cho chiến dịch mùa cao điểm (Back-to-school, luyện thi <span class="font-semibold text-blue-200">Cambridge</span>).</p>
+                   <p class="text-xs text-blue-100/70">• Thiết lập hệ thống đo lường <span class="font-semibold text-blue-200">GA4</span> + <span class="font-semibold text-blue-200">GTM</span> giúp đội Marketing theo dõi funnel từ ads → landing → tư vấn → chốt học phí.</p>
                 </div>
               </div>
             </div>
@@ -1206,6 +1280,41 @@ document.addEventListener('DOMContentLoaded', function() {
   <script>
     window.addEventListener('DOMContentLoaded', () => {
       lucide.createIcons();
+    });
+    
+    // Add 3D mouse move effect to profile card
+    document.addEventListener('DOMContentLoaded', function() {
+      const profileCard = document.querySelector('.profile-card-3d');
+      
+      // Kiểm tra nếu không phải thiết bị di động thì mới áp dụng hiệu ứng 3D
+      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      
+      if (profileCard && !isMobile) {
+        profileCard.addEventListener('mousemove', (e) => {
+          const card = e.currentTarget;
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+          
+          const rotateY = (centerX - x) / 20;
+          const rotateX = (y - centerY) / 20;
+          
+          card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(20px)`;
+        });
+        
+        profileCard.addEventListener('mouseleave', (e) => {
+          e.currentTarget.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateZ(0)';
+        });
+      }
+      
+      // Trên thiết bị di động, loại bỏ hiệu ứng 3D
+      if (profileCard && isMobile) {
+        profileCard.style.transform = 'none';
+        profileCard.style.perspective = 'none';
+      }
     });
   </script>
 

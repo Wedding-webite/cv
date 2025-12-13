@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="vi" class="h-full">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trần Hữu Hùng — Freelancer IT & Marketing</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+  body {
+    background: #0b0b0c;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+  }
+
+  /* Wrapper 3D */
+  .card-3d {
+    perspective: 1000px;
+  }
+
+  /* Thẻ xoay */
+  .profile-card {
+    transform-style: preserve-3d;
+    transition: 0.4s ease;
+  }
+
+  /* CARD thật (không xoay) */
+  .profile-content {
+    background: rgba(255,255,255,0.05);
+    border-radius: 16px;
+    padding: 1rem;
+    border: 1px solid rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+  }
+
+  /* CHO PHÉP CLICK */
+  .profile-content, a, button {
+    pointer-events: auto !important;
+    position: relative;
+    z-index: 10;
+  }
+
+  /* Ảnh */
+  .image-container {
+    border-radius: 1rem;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .status-indicator {
+    position: absolute;
+    bottom: 0.75rem;
+    left: 0.75rem;
+    display: flex;
+    align-items: center;
+    padding: 6px 10px;
+    border-radius: 9999px;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(4px);
+  }
+
+  .status-dot {
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    background: #34d399;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    50% { opacity: .5 }
+  }
+
+  .info-item {
+    display: flex;
+    gap: .75rem;
+    color: #aaa;
+  }
+
+  .info-item:hover {
+    color: #fff;
+  }
+
+  .divider {
+    height: 1px;
+    background: linear-gradient(to right, rgba(255,255,255,.2), transparent);
+    margin: 1rem 0;
+  }
+</style>
+
+</head>
+
+<body>
+
+<div class="card-3d">
+  <div class="profile-card">
+
+    <div class="profile-content">
+
+      <div class="image-container">
+        <img src="img/avttt.png" style="width:100%;height:20rem;object-fit:cover;">
+        <div class="status-indicator">
+          <div class="status-dot"></div>
+          <span style="font-size: 12px; color:white;">Sẵn sàng làm việc</span>
+        </div>
+      </div>
+
+      <h2 style="margin-top:1rem; color:#fff; font-size:1.4rem; font-weight:600;">
+        Trần Hữu Hùng
+      </h2>
+
+      <p style="margin-top: .25rem; color:#34d399; font-size:.9rem;">
+        Freelancer IT kết hợp Marketing
+      </p>
+
+      <div style="margin-top:1rem; display:flex; flex-direction:column; gap:.75rem;">
+        <div class="info-item">
+          <span>20/04/2000</span>
+        </div>
+        <div class="info-item">
+          <span>Bạch Hà, Nghệ An</span>
+        </div>
+        <a href="tel:0982345830" class="info-item">
+          <span>0982.345.830</span>
+        </a>
+        <a href="mailto:hunganhlux@gmail.com" class="info-item">
+          <span>hunganhlux@gmail.com</span>
+        </a>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- NÚT CLICK ĐƯỢC 100% -->
+      <button 
+        style="width:100%; background:#34d399; padding:0.75rem 1rem; border-radius:8px; font-weight:600; border:none; cursor:pointer;"
+        onclick="window.location.href='https://zalo.me/0982345830'"
+      >
+        Liên hệ ngay
+      </button>
+
+    </div>
+  </div>
+</div>
+
+<script>
+const card = document.querySelector('.profile-card');
+
+document.addEventListener('mousemove', e => {
+  const rect = card.getBoundingClientRect();
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+  const cx = rect.width / 2;
+  const cy = rect.height / 2;
+
+  const rx = (cy - y) / 25;
+  const ry = (x - cx) / 25;
+
+  card.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
+});
+
+document.addEventListener('mouseleave', () => {
+  card.style.transform = `rotateX(0) rotateY(0)`;
+});
+</script>
+
+</body>
+</html>
